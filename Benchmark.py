@@ -441,8 +441,7 @@ def benchmark(i): #"i is the benchmark index"
         chunkgen_command = fabric_chunkgen_command
         chunkgen_expect = fabric_chunkgen_expect
         command = command + " -jar " + os.path.basename(f)
-        if nogui:
-          command = command + ngui
+        command = command + ngui
         break
 
 
