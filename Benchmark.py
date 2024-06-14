@@ -6,11 +6,14 @@
 
 # 此基准测试脚本仅用于 在 Linux 上的 Fabric 我的世界 服务器性能测试
 
+print("vvv")
+
 import os,time,shutil,glob,datetime,json,signal,statistics,pprint,subprocess,csv,atexit,traceback
 import psutil  
 import pexpect
 from pexpect import popen_spawn
 
+print("vvvv")
 
 
 #-----------------------基准测试数据--------------------------
