@@ -20,14 +20,16 @@ jobs:
       - name: 创建 server 目录
         run: mkdir server
       - name: 下载 Minecraft Server Launcher
-        run: wget -O server/fabric-server-mc.1.20.4-loader.0.15.11-launcher.1.0.1.jar https://meta.fabricmc.net/v2/versions/loader/1.20.4/0.15.11/1.0.1/server/jar
+        run: wget -O server/fabric-server.jar https://meta.fabricmc.net/v2/versions/loader/1.20.4/0.15.11/1.0.1/server/jar
       - name: 初始化服务器
         run: |
           cd server
-          ${JAVA_HOME_21_X64}/bin/java -Xmx12G -jar fabric-server-mc.1.20.4-loader.0.15.11-launcher.1.0.1.jar nogui
+          ${JAVA_HOME_21_X64}/bin/java -Xmx12G -jar fabric-server.jar nogui
           ls -a
           cd ..
       - name: 同意 EULA
         run: python3 scripts/Agree-EULA.py
       - name: 禁用 sync-chunk-writes
         run: python3 scripts/Disable-Sync-Chunk-Writes.py
+      - name: 设置一个固定的种子
+        run: python3 scripts/Set-Map-Seed.py
