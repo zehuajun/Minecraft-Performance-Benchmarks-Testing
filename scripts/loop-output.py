@@ -1,4 +1,4 @@
-import threading
+import time
 
 time.sleep(1)
 
