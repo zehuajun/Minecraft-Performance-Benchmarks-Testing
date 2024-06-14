@@ -1,9 +1,9 @@
-import time
+import threading
 
-time.sleep(1)
+event.wait(1)
 
 print("ok")
 
 while True:
   print("ok")
-  time.sleep(1)
+  event.wait(1)
