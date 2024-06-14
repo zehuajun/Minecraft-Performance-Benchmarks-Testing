@@ -42,6 +42,10 @@ jobs:
           wget -O server/mods/Chunky-1.3.146.jar https://cdn.modrinth.com/data/fALzjamp/versions/NHWYq9at/Chunky-1.3.146.jar
       - name: 创建 Benchmarks 目录
         run: mkdir Benchmarks
+      - name: 下载 Azul Platform Prime
+        run: |
+          wget https://cdn.azul.com/zing-zvm/ZVM24.05.0.0/zing24.05.0.0-4-jdk21.0.3-linux_x64.tar.gz
+          tar xvf zing24.05.0.0-4-jdk21.0.3-linux_x64.tar.gz
       - name: 运行基准测试
         run: python -u Benchmark.py
       - name: 上传结果
