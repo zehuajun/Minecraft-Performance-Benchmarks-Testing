@@ -46,7 +46,7 @@ blist = [
 #----------------------其他选项--------------------------
 
 #服务器基准测试选项
-nogui = False     # 是否运行专用服务器GUI
+nogui = True
 carpet = 67 #如果存在“地毯”织物mod，则模拟玩家的数量
 fabric_chunkgen_command = r"chunky start"      # 要在 fabric packs 中使用的块生成命令
 fabric_chunkgen_expect =  r"[Chunky] Task finished for"   # 块生成完成时要查找的字符串
