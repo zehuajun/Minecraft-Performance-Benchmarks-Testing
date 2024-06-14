@@ -33,7 +33,7 @@ blist = [
 #----------------------其他选项--------------------------
 
 #服务器基准测试选项
-carpet = 67 #如果存在“地毯”织物mod，则模拟玩家的数量
+carpet = 5 #如果存在“地毯”织物mod，则模拟玩家的数量
 chunkgen = 10 # 需要生成的区块的半径
 chunkgen_command = r"chunky start"      # 要在 fabric packs 中使用的块生成命令
 chunkgen_expect =  r"[Chunky] Task finished for"   # 块生成完成时要查找的字符串
