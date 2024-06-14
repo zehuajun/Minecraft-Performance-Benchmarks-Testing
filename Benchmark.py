@@ -34,7 +34,7 @@ blist = [
 
 #服务器基准测试选项
 carpet = 64 #如果存在“地毯”织物mod，则模拟玩家的数量
-chunkgen = 10 # 需要生成的区块的半径
+chunkgen = 125 # 需要生成的区块的半径
 startuptimeout= 350 # 在认为服务器已关闭/卡住之前等待的秒数
 chunkgentimeout = 600 # 在考虑服务器已关闭/卡住之前等待区块生成的秒数 
 totaltimeout = 1200 # 整个服务器在超时前可以运行的秒数。
