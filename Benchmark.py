@@ -6,19 +6,10 @@
 
 # 此基准测试脚本仅用于 在 Linux 上的 Fabric 我的世界 服务器性能测试
 
-import os,time,shutil,glob,datetime,json,platform,signal,statistics,pprint,subprocess,csv,atexit,traceback
+import os,time,shutil,glob,datetime,json,signal,statistics,pprint,subprocess,csv,atexit,traceback
 import psutil  
 import pexpect
 from pexpect import popen_spawn
-
-
-#----------------------------重复信息----------------------------
-
-# 我的世界服务器路径
-serverpath = "/home/runner/work/Minecraft-Performance-Benchmarks-Testing/Minecraft-Performance-Benchmarks-Testing/server"
-
-
-# Java 路径
 
 
 
@@ -46,7 +37,6 @@ blist = [
 #----------------------其他选项--------------------------
 
 #服务器基准测试选项
-nogui = True
 carpet = 67 #如果存在“地毯”织物mod，则模拟玩家的数量
 fabric_chunkgen_command = r"chunky start"      # 要在 fabric packs 中使用的块生成命令
 fabric_chunkgen_expect =  r"[Chunky] Task finished for"   # 块生成完成时要查找的字符串
@@ -97,11 +87,7 @@ def benchmark(i): #"i is the benchmark index"
   chunkgen_expect = ""
   
   plat = "Linux"
-  if "Windows" in platform.system():
-    plat = "Windows"
-  ngui = ""
-  if nogui:
-    ngui = " nogui"
+  ngui = " nogui"
   if "PrismInstance" in blist[i] and ("Command" in blist[i] or "Path" in blist[i]):
     raise Exception("Each benchmark instance should ether have a command and path entry, or a Prism instance entry, not both")
   
