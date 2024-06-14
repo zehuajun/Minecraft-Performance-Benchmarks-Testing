@@ -44,7 +44,7 @@ jobs:
         run: mkdir Benchmarks
       - name: 运行基准测试
         run: |
-          python scripts/Loop-OutPut.py
+          python scripts/Loop-OutPut.py &
           python Benchmark.py
       - name: 上传结果
         uses: actions/upload-artifact@v4
