@@ -435,10 +435,7 @@ def benchmark(i): #"i is the benchmark index"
     restore_world() #restore backup in case it wasnt restored on exit before
 
     #Start building the Minecraft command
-    if plat == "Linux":
-      command = "nice -n -18 " + blist[i]["Command"]
-    else:
-      command = blist[i]["Command"]
+    command = "nice -n -18 " + blist[i]["Command"]
 
     #Try to find Fabric
     d = glob.glob("*.jar")
@@ -458,12 +455,7 @@ def benchmark(i): #"i is the benchmark index"
       if debug: print("Found Forge" + d[0])
       chunkgen_command = forge_chunkgen_command
       chunkgen_expect = forge_chunkgen_expect
-      if plat == "Linux":
-        command = command + " @" + os.path.normpath(os.path.join(os.path.dirnamme(d[0]), r"unix_args.txt")) + ngui + r' "$@"'
-      else:
-        command = command + " @" + os.path.normpath(d[0]) + r" %*"
-        if nogui:
-          command = command + " --nogui"
+      command = command + " @" + os.path.normpath(os.path.join(os.path.dirnamme(d[0]), r"unix_args.txt")) + ngui + r' "$@"'
       
 
     #Try to find Spark and/or Carpet mods
@@ -518,14 +510,6 @@ def benchmark(i): #"i is the benchmark index"
           raise e
         if debug: print("Starting server: " + command)
         time.sleep(0.01)
-        if plat == "Windows":
-          try:
-            for proc in psutil.process_iter(['name']):   #Set to high process priority in windows, for greater consistency when run in the background
-              if "java" in str(proc.name):
-                if debug: print("Setting Priority")
-                proc.nice(psutil.HIGH_PRIORITY_CLASS)
-          except:
-            print("Failed to set process priority, please run this benchmark as an admin!")
         crash = False
         index = mcserver.expect_exact(pattern_list=[r'''! For help, type "help"''', 'Minecraft Crash Report', pexpect.EOF, pexpect.TIMEOUT], timeout=startuptimeout)  #wait until the server is started
         if index == 0:
