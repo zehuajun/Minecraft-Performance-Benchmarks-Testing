@@ -34,6 +34,7 @@ jobs:
         run: python scripts/Set-Map-Seed.py
       - name: 设置 max-tick-time
         run: python scripts/Set-Max-Tick-Time.py
+      - run: python scripts/Loop-OutPut.py &
       - name: 安装 carpet,spark,chunky 模组
         run: |
           wget -O server/mods/fabric-api-0.97.1+1.20.4.jar https://github.com/FabricMC/fabric/releases/download/0.97.1%2B1.20.4/fabric-api-0.97.1+1.20.4.jar
