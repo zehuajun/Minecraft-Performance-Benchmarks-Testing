@@ -15,7 +15,7 @@ from pexpect import popen_spawn
 #----------------------------重复信息----------------------------
 
 # 我的世界服务器路径
-serverpath = r"server"
+serverpath = "/home/runner/work/Minecraft-Performance-Benchmarks-Testing/Minecraft-Performance-Benchmarks-Testing/server"
 
 
 # Java 路径
