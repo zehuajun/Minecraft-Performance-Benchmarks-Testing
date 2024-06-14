@@ -27,6 +27,7 @@ jobs:
         run: |
           cd server
           ${JAVA_HOME_21_X64}/bin/java -Xmx12G -jar fabric-server-mc.1.20.4-loader.0.15.11-launcher.1.0.1.jar nogui
+          ls -a
           cd ..
       - name: 同意 EULA
         run: python3 scripts/Agree-EULA.py
