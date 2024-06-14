@@ -38,6 +38,7 @@ blist = [
 
 #服务器基准测试选项
 carpet = 67 #如果存在“地毯”织物mod，则模拟玩家的数量
+chunkgen = 10 # 需要生成的区块的半径
 chunkgen_command = r"chunky start"      # 要在 fabric packs 中使用的块生成命令
 chunkgen_expect =  r"[Chunky] Task finished for"   # 块生成完成时要查找的字符串
 startuptimeout= 350 # 在认为服务器已关闭/卡住之前等待的秒数
@@ -215,11 +216,14 @@ def benchmark(i): #"i is the benchmark index"
               mcserver.sendline("player " + str(x) + " sprint")
               mcserver.sendline("player " + str(x) + " attack continuous")
               print("第 " + str(x) + " 个假人加入服务器")
-              time.sleep(8)
+              time.sleep(1)
             blist[i]["Player_Spawn_Times"].append(round(time.time() - start , 3))
           mcserver.sendline(forceload_cmd) 
           time.sleep(1)    #Let it settle some more
           print("Generating chunks...")
+          mcserver.sendline("worldborder center 0 0")
+          mcserver.sendline("worldborder set " + str(chunkgen))
+          mcserver.sendline("chunky worldborder")
           start = time.time()
           mcserver.sendline(chunkgen_command)   #Generate chunks
           index = mcserver.expect_exact(pattern_list=[chunkgen_expect, 'Minecraft Crash Report', pexpect.EOF, pexpect.TIMEOUT], timeout=chunkgentimeout)
