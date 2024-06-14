@@ -1,7 +1,3 @@
 pexpect
 psutil
 opencv-python
-PyAutoGUI
-pydirectinput
-GuiBot
-pygetwindow
