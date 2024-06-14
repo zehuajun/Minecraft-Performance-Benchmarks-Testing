@@ -51,7 +51,6 @@ forceload_cmd= r"forceload add -120 -120 120 120" # 用于强制加载矩形的�
 #-------------------------代码----------------------------
 # 您不应该配置此行以下的任何内容！
 
-debug = True
 loadedstring = r"textures/atlas/mob_effects.png-atlas" #String to look for in a log when a client is finished loading
 benchlog = os.path.normpath(os.path.join(os.getcwd(), "Benchmarks/", str(datetime.datetime.now())[:-7].replace(" ", "_").replace(":","-") + "_" + benchname.replace(" ", "_") + r".json")) #Benchmark log path
 csvpath = os.path.normpath(os.path.join(os.getcwd(),  "Benchmarks", "presentmon.csv"))
@@ -144,7 +143,7 @@ def benchmark(i): #"i is the benchmark index"
         blist[i]["Player_Spawn_Times"] = []
       
     else: 
-      if debug: print("No mods folder found")
+      print("No mods folder found")
 
     #Helper function for crash notification
     def qw(s):
@@ -164,12 +163,12 @@ def benchmark(i): #"i is the benchmark index"
       try:
         #Delete chunky config if found, as it stores jobs there
         if os.path.isfile(r"config/chunky.json"):
-          if debug: print("Removing chunky config")
+          print("Removing chunky config")
           os.remove(r"config/chunky.json")
 
         #Start Minecraft
         print("Running '" + blist[i]["Name"] + "' iteration " + str(n))
-        if debug:print(command)
+        print(command)
         start = time.time()
         try:
           
@@ -178,12 +177,12 @@ def benchmark(i): #"i is the benchmark index"
           print("Error running the command:")
           print(command)
           raise e
-        if debug: print("Starting server: " + command)
+        print("Starting server: " + command)
         time.sleep(0.01)
         crash = False
         index = mcserver.expect_exact(pattern_list=[r'''! For help, type "help"''', 'Minecraft Crash Report', pexpect.EOF, pexpect.TIMEOUT], timeout=startuptimeout)  #wait until the server is started
         if index == 0:
-          if debug: print("Server started")
+          print("Server started")
         elif index == 1:
           mcserver.sendline('stop')
           time.sleep(0.01)
@@ -205,7 +204,7 @@ def benchmark(i): #"i is the benchmark index"
           blist[i]["Startup_Times"].append(round(time.time() - start , 2))
           time.sleep(6)    #Let the server "settle"
           if hascarpet:
-            if debug: print("Spawning players")
+            print("Spawning players")
             start = time.time()
             for x in range(1, carpet + 1):
               mcserver.sendline("player " + str(x) + " spawn")
@@ -220,13 +219,13 @@ def benchmark(i): #"i is the benchmark index"
             blist[i]["Player_Spawn_Times"].append(round(time.time() - start , 3))
           mcserver.sendline(forceload_cmd) 
           time.sleep(1)    #Let it settle some more
-          if debug: print("Generating chunks...")
+          print("Generating chunks...")
           start = time.time()
           mcserver.sendline(chunkgen_command)   #Generate chunks
           index = mcserver.expect_exact(pattern_list=[chunkgen_expect, 'Minecraft Crash Report', pexpect.EOF, pexpect.TIMEOUT], timeout=chunkgentimeout)
         
           if index == 0:
-            if debug: print("Chunks finished. Stopping server...")
+            print("Chunks finished. Stopping server...")
             blist[i]["Chunkgen_Times"].append(round(time.time() - start, 2))
             if spark:
               mcserver.sendline("spark health --memory")
@@ -258,7 +257,7 @@ def benchmark(i): #"i is the benchmark index"
           elif index == 3:
             blist[i]["Chunkgen_Times"].append("TIMEOUT")
           mcserver.kill(signal.SIGTERM)
-        if debug: pprint.pprint(blist[i])
+        pprint.pprint(blist[i])
         with open(benchlog, "w") as f:
           json.dump(blist[0:i+1], f, indent=4)  #Write current data to the benchmark log
       except Exception as e:
