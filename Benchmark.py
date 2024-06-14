@@ -37,7 +37,7 @@ blist = [
   {
     "Name": "m", 
     "Command": "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java -Xmx12G",
-    "Path": serverpath,
+    "Path": "/home/runner/work/Minecraft-Performance-Benchmarks-Testing/Minecraft-Performance-Benchmarks-Testing/server",
     "Iterations": 1
   }
 
