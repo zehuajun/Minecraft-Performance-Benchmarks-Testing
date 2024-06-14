@@ -3,7 +3,7 @@
 
 # 此基准测试脚本仅用于 在 Linux 上的 Fabric 我的世界 服务器性能测试
 
-import os,time,shutil,glob,datetime,json,signal,statistics,pprint,subprocess,csv,atexit,traceback
+import os,time,shutil,glob,datetime,json,signal,statistics,pprint,csv,atexit,traceback
 import psutil  
 import pexpect
 from pexpect import popen_spawn
@@ -25,7 +25,7 @@ blist = [
     "Name": "m", 
     "Command": "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java -Xmx12G",
     "Path": "/home/runner/work/Minecraft-Performance-Benchmarks-Testing/Minecraft-Performance-Benchmarks-Testing/server",
-    "Iterations": 1
+    "Iterations": 5
   }
 
 ]
@@ -33,7 +33,7 @@ blist = [
 #----------------------其他选项--------------------------
 
 #服务器基准测试选项
-carpet = 5 #如果存在“地毯”织物mod，则模拟玩家的数量
+carpet = 64 #如果存在“地毯”织物mod，则模拟玩家的数量
 chunkgen = 10 # 需要生成的区块的半径
 startuptimeout= 350 # 在认为服务器已关闭/卡住之前等待的秒数
 chunkgentimeout = 600 # 在考虑服务器已关闭/卡住之前等待区块生成的秒数 
