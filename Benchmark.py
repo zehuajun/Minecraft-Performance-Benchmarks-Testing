@@ -69,7 +69,6 @@ def benchmark(i): #"i is the benchmark index"
   chunkgen_expect = ""
   
   plat = "Linux"
-  ngui = " nogui"
   if "PrismInstance" in blist[i] and ("Command" in blist[i] or "Path" in blist[i]):
     raise Exception("Each benchmark instance should ether have a command and path entry, or a Prism instance entry, not both")
   
@@ -129,7 +128,7 @@ def benchmark(i): #"i is the benchmark index"
         chunkgen_command = fabric_chunkgen_command
         chunkgen_expect = fabric_chunkgen_expect
         command = command + " -jar " + os.path.basename(f)
-        command = command + ngui
+        command = command + " nogui"
         break
 
 
