@@ -575,6 +575,7 @@ def benchmark(i): #"i is the benchmark index"
               mcserver.sendline("player " + str(x) + " move forward")
               mcserver.sendline("player " + str(x) + " sprint")
               mcserver.sendline("player " + str(x) + " attack continuous")
+              print("第 " + x + " 个假人加入服务器")
               time.sleep(8)
             blist[i]["Player_Spawn_Times"].append(round(time.time() - start , 3))
           mcserver.sendline(forceload_cmd) 
