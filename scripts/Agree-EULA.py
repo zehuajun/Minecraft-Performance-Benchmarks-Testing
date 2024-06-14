@@ -17,3 +17,5 @@ for eachline in alllines:
     a=re.sub('false','true',eachline)
 f.writelines(a)
 f.close()
+
+print("已同意 Minecraft EULA")
