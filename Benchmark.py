@@ -14,11 +14,11 @@ from pexpect import popen_spawn
 
 #----------------------------重复信息----------------------------
 
-#Minecraft Server Paths
+# 我的世界服务器路径
 serverpath = r"server"
 
 
-#Java Paths
+# Java 路径
 
 graalpath = 
 
@@ -34,7 +34,6 @@ blist = [
 #    "Path": full path to the server, 
 #    "Iterations": # of iterations to run and average together
 #  }
-#]
 
 
 ]
@@ -42,20 +41,24 @@ blist = [
 #----------------------其他选项--------------------------
 
 #服务器基准测试选项
-nogui = False     #是否运行专用服务器GUI
+nogui = False     # 是否运行专用服务器GUI
 carpet = 67 #如果存在“地毯”织物mod，则模拟玩家的数量
-fabric_chunkgen_command = r"chunky start"      #要在 fabric packs 中使用的块生成命令
-fabric_chunkgen_expect =  r"[Chunky] Task finished for"   #块生成完成时要查找的字符串
+fabric_chunkgen_command = r"chunky start"      # 要在 fabric packs 中使用的块生成命令
+fabric_chunkgen_expect =  r"[Chunky] Task finished for"   # 块生成完成时要查找的字符串
+startuptimeout= 350 # 在认为服务器已关闭/卡住之前等待的秒数
+chunkgentimeout = 600 # 在考虑服务器已关闭/卡住之前等待区块生成的秒数 
+totaltimeout = 1200 # 整个服务器在超时前可以运行的秒数。
+forceload_cmd= r"forceload add -120 -120 120 120" # 用于强制加载矩形的命令。也可以是其他一些服务器控制台命令
+
+
+
+#----------------------无用选项--------------------------
+
+# 对于 Forge 的服务端基准测试选项
 forge_chunkgen_command = r"forge generate 0 0 0 3000"     #用于 Forge packs 的块生成命令
-forge_chunkgen_expect =  r"Finished generating"           ##String to look for when chunk generation is finished
-startuptimeout= 350 #Number of seconds to wait before considering the server to be dead/stuck
-chunkgentimeout = 600 #Number of seconds to wait for chunk generation before considering the server to be dead/stuck 
-totaltimeout = 1200 #Number of seconds the whole server can run before timing out. 
-forceload_cmd= r"forceload add -120 -120 120 120" #Command to forceload a rectangle. Can also be some other server console command. 
+forge_chunkgen_expect =  r"Finished generating"           # 块生成完成时要查找的字符串
 
-
-
-#客户端基准测试选项
+# 客户端基准测试选项
 prismpath = r"C:/Games/Prism-Windows-Portable-1.4.0/Prism.exe" #Full path to Prism executable file
 prisminstances = r"" #Full path to Prism instance folder. Normally in %appdata%/roaming/Prism on windows, but you can leave this blank if using Prism portable. 
 presentmonpath = r"presentmon.exe"  #full path to Intel presentmon executable file
@@ -69,7 +72,7 @@ focusclick = False #Middle click before searching for buttons, only really neces
 
 
 #-------------------------代码----------------------------
-#You shouldn't have to configure anything below this line!
+# 您不应该配置此行以下的任何内容！
 
 debug = False
 loadedstring = r"textures/atlas/mob_effects.png-atlas" #String to look for in a log when a client is finished loading
