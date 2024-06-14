@@ -231,7 +231,7 @@ def benchmark(i): #"i is the benchmark index"
               time.sleep(2)
               print("在服务器上运行 spark health --memory")
               mcserver.sendline("spark health --memory")
-              mcserver.expect_exact("TPS from last 5")
+              mcserver.expect_exact("TPS from last")
               time.sleep(2)
               print("在服务器上运行 spark gc")
               mcserver.sendline("spark gc")
