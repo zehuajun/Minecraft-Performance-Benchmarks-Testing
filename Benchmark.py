@@ -69,8 +69,6 @@ def benchmark(i): #"i is the benchmark index"
   chunkgen_expect = ""
   
   plat = "Linux"
-  if "PrismInstance" in blist[i] and ("Command" in blist[i] or "Path" in blist[i]):
-    raise Exception("Each benchmark instance should ether have a command and path entry, or a Prism instance entry, not both")
   
   #Function to wait for a given line to appear in a log file. 
   def waitforlogline(lfile, key, ldelay = 1, ltimeout = 1800):
