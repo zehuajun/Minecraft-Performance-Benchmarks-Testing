@@ -19,6 +19,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: 创建 server 目录
         run: mkdir server
+      - run: python scripts/Loop-OutPut.py
       - name: 下载 Minecraft Server Launcher
         run: wget -O server/fabric-server.jar https://meta.fabricmc.net/v2/versions/loader/1.20.4/0.15.11/1.0.1/server/jar
       - name: 初始化服务器
