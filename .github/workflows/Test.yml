@@ -9,6 +9,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - run: cat ${JAVA_HOME_21_X64}
       - name: 检出仓库
         uses: actions/checkout@v4
       - name: 安装 Python 3.10
