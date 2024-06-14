@@ -22,7 +22,7 @@ jobs:
       - name: 创建 server 目录
         run: mkdir server
       - name: 下载 Minecraft Server Launcher
-        run: wget -P server https://meta.fabricmc.net/v2/versions/loader/1.20.4/0.15.11/1.0.1/server/jar
+        run: wget -O server/fabric-server-mc.1.20.4-loader.0.15.11-launcher.1.0.1.jar https://meta.fabricmc.net/v2/versions/loader/1.20.4/0.15.11/1.0.1/server/jar
       - name: 初始化服务器
         run: |
           cd server
