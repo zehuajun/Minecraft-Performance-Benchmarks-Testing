@@ -1,5 +1,5 @@
 import time
 
 while True:
-  print("还未被卡死")
+  print("ok")
   time.sleep(1)
