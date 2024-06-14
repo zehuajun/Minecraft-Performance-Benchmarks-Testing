@@ -14,6 +14,6 @@ alllines=f.readlines()
 f.close()
 f=open('server/eula.txt','w+')
 for eachline in alllines:
-        a=re.sub('false','true',eachline)
+    a=re.sub('false','true',eachline)
 f.writelines(a)
 f.close()
