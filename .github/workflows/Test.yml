@@ -31,4 +31,5 @@ jobs:
           cd ..
       - name: 同意 EULA
         run: python3 scripts/Agree-EULA.py
-
+      - name: 禁用 sync-chunk-writes
+        run: python3 scripts/Disable-Sync-Chunk-Writes.py
