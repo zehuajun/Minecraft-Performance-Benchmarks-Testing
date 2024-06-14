@@ -38,8 +38,8 @@ blist = [
 
 #服务器基准测试选项
 carpet = 67 #如果存在“地毯”织物mod，则模拟玩家的数量
-fabric_chunkgen_command = r"chunky start"      # 要在 fabric packs 中使用的块生成命令
-fabric_chunkgen_expect =  r"[Chunky] Task finished for"   # 块生成完成时要查找的字符串
+chunkgen_command = r"chunky start"      # 要在 fabric packs 中使用的块生成命令
+chunkgen_expect =  r"[Chunky] Task finished for"   # 块生成完成时要查找的字符串
 startuptimeout= 350 # 在认为服务器已关闭/卡住之前等待的秒数
 chunkgentimeout = 600 # 在考虑服务器已关闭/卡住之前等待区块生成的秒数 
 totaltimeout = 1200 # 整个服务器在超时前可以运行的秒数。
@@ -122,9 +122,7 @@ def benchmark(i): #"i is the benchmark index"
     d = glob.glob("*.jar")
     for f in d:
       if ("fabric-" in os.path.basename(f)) and "fabric-installer" not in os.path.basename(f):
-        if debug: print("Found Fabric: " + f)
-        chunkgen_command = fabric_chunkgen_command
-        chunkgen_expect = fabric_chunkgen_expect
+        print("Found Fabric: " + f)
         command = command + " -jar " + os.path.basename(f)
         command = command + " nogui"
         break
