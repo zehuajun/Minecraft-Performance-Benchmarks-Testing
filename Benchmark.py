@@ -22,10 +22,16 @@ blist = [
 #  }
 
   {
-    "Name": "m", 
+    "Name": "OpenJDK 21", 
     "Command": "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java -Xmx12G",
     "Path": "/home/runner/work/Minecraft-Performance-Benchmarks-Testing/Minecraft-Performance-Benchmarks-Testing/server",
-    "Iterations": 5
+    "Iterations": 3
+  },
+  {
+    "Name": "Azul Platform Prime", 
+    "Command": "/home/runner/work/Minecraft-Performance-Benchmarks-Testing/Minecraft-Performance-Benchmarks-Testing/zing24.05.0.0-4-jdk21.0.3-linux_x64/bin/java -Xmx12G",
+    "Path": "/home/runner/work/Minecraft-Performance-Benchmarks-Testing/Minecraft-Performance-Benchmarks-Testing/server",
+    "Iterations": 3
   }
 
 ]
