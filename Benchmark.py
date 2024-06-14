@@ -315,6 +315,7 @@ def benchmark(i): #"i is the benchmark index"
 
 #-------------------------------Main thread---------------------------------------------
 
+print("开始基准测试！")
 iter = 0
 for bench in blist:
   benchmark(iter)
