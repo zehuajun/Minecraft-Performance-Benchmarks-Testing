@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 # 这个基准测试脚本来自 https://github.com/brucethemoose/Minecraft-Performance-Flags-Benchmarks 作者为 brucethemoose 使用 MIT 协议开源
 # ZeHuaJun 进行二次更改
 
