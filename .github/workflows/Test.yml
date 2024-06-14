@@ -29,11 +29,11 @@ jobs:
       - name: 同意 EULA
         run: python scripts/Agree-EULA.py
       - name: 禁用 sync-chunk-writes
-        run: python3 scripts/Disable-Sync-Chunk-Writes.py
+        run: python scripts/Disable-Sync-Chunk-Writes.py
       - name: 设置一个固定的种子
-        run: python3 scripts/Set-Map-Seed.py
+        run: python scripts/Set-Map-Seed.py
       - name: 设置 max-tick-time
-        run: python3 scripts/Set-Max-Tick-Time.py
+        run: python scripts/Set-Max-Tick-Time.py
       - name: 安装 carpet,spark,chunky 模组
         run: |
           wget -O server/mods/fabric-api-0.97.1+1.20.4.jar https://github.com/FabricMC/fabric/releases/download/0.97.1%2B1.20.4/fabric-api-0.97.1+1.20.4.jar
@@ -43,7 +43,7 @@ jobs:
       - name: 创建 Benchmarks 目录
         run: mkdir Benchmarks
       - name: 运行基准测试
-        run: python3 Benchmark.py
+        run: python Benchmark.py
       - name: 上传结果
         uses: actions/upload-artifact@v4
         with:
