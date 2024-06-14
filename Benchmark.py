@@ -49,10 +49,6 @@ forceload_cmd= r"forceload add -120 -120 120 120" # 用于强制加载矩形的�
 
 #----------------------无用选项--------------------------
 
-# 对于 Forge 的服务端基准测试选项
-forge_chunkgen_command = r"forge generate 0 0 0 3000"     #用于 Forge packs 的块生成命令
-forge_chunkgen_expect =  r"Finished generating"           # 块生成完成时要查找的字符串
-
 # 客户端基准测试选项
 prismpath = r"C:/Games/Prism-Windows-Portable-1.4.0/Prism.exe" #Full path to Prism executable file
 prisminstances = r"" #Full path to Prism instance folder. Normally in %appdata%/roaming/Prism on windows, but you can leave this blank if using Prism portable. 
@@ -448,15 +444,7 @@ def benchmark(i): #"i is the benchmark index"
         if nogui:
           command = command + ngui
         break
-    
-    #Try to find Forge
-    d = glob.glob(r"libraries/net/minecraftforge/forge/*/win_args.txt")
-    if len(d) == 1:
-      if debug: print("Found Forge" + d[0])
-      chunkgen_command = forge_chunkgen_command
-      chunkgen_expect = forge_chunkgen_expect
-      command = command + " @" + os.path.normpath(os.path.join(os.path.dirnamme(d[0]), r"unix_args.txt")) + ngui + r' "$@"'
-      
+
 
     #Try to find Spark and/or Carpet mods
     if os.path.isdir("mods"):
