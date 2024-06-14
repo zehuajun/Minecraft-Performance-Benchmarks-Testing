@@ -35,6 +35,12 @@ blist = [
 #    "Iterations": # of iterations to run and average together
 #  }
 
+  {
+    "Name": "m", 
+    "Command": "${JAVA_HOME_21_X64}/bin/java -Xmx12G -jar fabric-server.jar nogui"
+    "Path": serverpath,
+    "Iterations": 1
+  }
 
 ]
 
