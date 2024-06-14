@@ -19,4 +19,7 @@ jobs:
           python-version: '3.10'
       - name: 安装 python 包 依赖
         run: python3 -m pip install -r Minecraft-Performance-Flags-Benchmarks/requirements.txt
-      
+      - name: 创建 server 目录
+        run: mkdir server
+      - name: 下载 Minecraft Server Launcher
+        run: wget -P server https://meta.fabricmc.net/v2/versions/loader/1.20.4/0.15.11/1.0.1/server/jar
