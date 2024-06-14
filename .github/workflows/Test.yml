@@ -25,7 +25,6 @@ jobs:
         run: |
           cd server
           ${JAVA_HOME_21_X64}/bin/java -Xmx12G -jar fabric-server.jar nogui
-          ls -a
           cd ..
       - name: 同意 EULA
         run: python3 scripts/Agree-EULA.py
@@ -33,6 +32,8 @@ jobs:
         run: python3 scripts/Disable-Sync-Chunk-Writes.py
       - name: 设置一个固定的种子
         run: python3 scripts/Set-Map-Seed.py
+      - name: 设置 max-tick-time
+        run: python3 Set-Max-Tick-Time.py
       - name: 安装 carpet,spark,chunky 模组
         run: |
           wget -O server/mods/fabric-api-0.97.1+1.20.4.jar https://github.com/FabricMC/fabric/releases/download/0.97.1%2B1.20.4/fabric-api-0.97.1+1.20.4.jar
@@ -43,7 +44,6 @@ jobs:
         run: mkdir Benchmarks
       - name: 运行基准测试
         run: sudo python3 Benchmark.py
-        continue-on-error: true
       - name: 上传结果
         uses: actions/upload-artifact@v4
         with:
