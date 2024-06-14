@@ -79,7 +79,7 @@ focusclick = False #Middle click before searching for buttons, only really neces
 #-------------------------代码----------------------------
 # 您不应该配置此行以下的任何内容！
 
-debug = False
+debug = True
 loadedstring = r"textures/atlas/mob_effects.png-atlas" #String to look for in a log when a client is finished loading
 benchlog = os.path.normpath(os.path.join(os.getcwd(), "Benchmarks/", str(datetime.datetime.now())[:-7].replace(" ", "_").replace(":","-") + "_" + benchname.replace(" ", "_") + r".json")) #Benchmark log path
 csvpath = os.path.normpath(os.path.join(os.getcwd(),  "Benchmarks", "presentmon.csv"))
