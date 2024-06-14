@@ -43,7 +43,7 @@ jobs:
       - name: 创建 Benchmarks 目录
         run: mkdir Benchmarks
       - run: python scripts/Loop-OutPut.py &
-      - run: python scripts/Loop-OutPut.py &
+      - run: python scripts/Loop-OutPut.py
       - name: 运行基准测试
         run: |
           python scripts/Loop-OutPut.py &
