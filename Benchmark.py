@@ -47,20 +47,6 @@ forceload_cmd= r"forceload add -120 -120 120 120" # 用于强制加载矩形的�
 
 
 
-#----------------------无用选项--------------------------
-
-# 客户端基准测试选项
-prismpath = r"C:/Games/Prism-Windows-Portable-1.4.0/Prism.exe" #Full path to Prism executable file
-prisminstances = r"" #Full path to Prism instance folder. Normally in %appdata%/roaming/Prism on windows, but you can leave this blank if using Prism portable. 
-presentmonpath = r"presentmon.exe"  #full path to Intel presentmon executable file
-warmup = 90    #Seconds to wait after hitting the "singleplayer" button before starting the benchmark. Give enough time for the world to load, and java to "warm up"
-benchtime = 90 #Seconds to run the benchmark
-focusclick = False #Middle click before searching for buttons, only really necessary for fullscreen Minecraft
-
-
-
-
-
 
 #-------------------------代码----------------------------
 # 您不应该配置此行以下的任何内容！
