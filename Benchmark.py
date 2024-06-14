@@ -36,7 +36,7 @@ blist = [
 
   {
     "Name": "m", 
-    "Command": "${JAVA_HOME_21_X64}/bin/java -Xmx12G",
+    "Command": "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java -Xmx12G",
     "Path": serverpath,
     "Iterations": 1
   }
