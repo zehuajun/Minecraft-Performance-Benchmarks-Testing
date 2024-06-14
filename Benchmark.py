@@ -36,7 +36,7 @@ blist = [
 
   {
     "Name": "m", 
-    "Command": "${JAVA_HOME_21_X64}/bin/java -Xmx12G -jar fabric-server.jar nogui",
+    "Command": "${JAVA_HOME_21_X64}/bin/java -Xmx12G",
     "Path": serverpath,
     "Iterations": 1
   }
