@@ -4,60 +4,30 @@
 # 这个基准测试脚本来自 https://github.com/brucethemoose/Minecraft-Performance-Flags-Benchmarks 作者为 brucethemoose 使用 MIT 协议开源
 # ZeHuaJun 进行二次更改
 
+# 此基准测试脚本仅用于 在 Linux 上的 Fabric 我的世界 服务器性能测试
+
 import os,time,shutil,glob,datetime,json,platform,signal,statistics,pprint,subprocess,csv,atexit,traceback
 import psutil  
 import pexpect
 from pexpect import popen_spawn
 
 
-#----------------------------String Scratch Space----------------------------
-#Write your strings to construct server benchmarks here!
-#Use / or \\ instead of \ for paths
+#----------------------------重复信息----------------------------
 
 #Minecraft Server Paths
+serverpath = r"server"
 
-vevserver = r"C:/Games/mcservers/vevserver"
-
-minfabric = r"C:/Games/mcservers/MinimalFabric"
 
 #Java Paths
 
-graalpath = r"C:/JDKs/graalvm-ee-java17-windows-amd64-22.3.0/graalvm-ee-java17-22.3.0/bin/java.exe"
-
-jdkpath = r"C:/JDKs//OpenJDK17U-jre_x64_windows_hotspot_17.0.4_8/jdk-17.0.4+8-jre/bin/java.exe"
-
-j9path = r"F:/JDKs/ibmopenj9/bin/java.exe"
-
-#Java Flags (for servers)
-#(Should start with a space, so they can be "added" together with the + sign)
-#Client flags must be set in Prism instances!
-
-#GC
-aikar = r''' -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:MaxTenuringThreshold=1'''
-
-graalflags = r''' -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+AlwaysActAsServerClassMachine -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+UseNUMA -XX:AllocatePrefetchStyle=3 -XX:NmethodSweepActivity=1 -XX:ReservedCodeCacheSize=400M -XX:NonNMethodCodeHeapSize=12M -XX:ProfiledCodeHeapSize=194M -XX:NonProfiledCodeHeapSize=194M -XX:-DontCompileHugeMethods -XX:MaxNodeLimit=240000 -XX:NodeLimitFudgeFactor=8000 -XX:+UseVectorCmov -XX:+PerfDisableSharedMem -XX:+UseFastUnorderedTimeStamps -XX:+UseCriticalJavaThreadPriority -XX:+EagerJVMCI -Dgraal.TuneInlinerExploration=1 -Dgraal.CompilerConfiguration=enterprise -XX:+UseG1GC -XX:MaxGCPauseMillis=130 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=28 -XX:G1HeapRegionSize=16M -XX:G1ReservePercent=20 -XX:G1MixedGCCountTarget=3 -XX:InitiatingHeapOccupancyPercent=10 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=0 -XX:SurvivorRatio=32 -XX:MaxTenuringThreshold=1 -XX:G1SATBBufferEnqueueingThresholdPercent=30 -XX:G1ConcMarkStepDurationMillis=5 -XX:G1ConcRSHotCardLimit=16 -XX:G1ConcRefinementServiceIntervalMillis=150 -XX:ConcGCThreads=6'''
-
-lpages = r''' -XX:+UseLargePages -XX:LargePageSizeInBytes=2m'''
-
-memory = r''' -Xms7G -Xmx7G'''
-
-lightmemory = r''' -Xms4G -Xmx4G'''
-
-alot = r'''	-Dgraal.EEPeelAlot=true -Dgraal.StripMineALot=true'''
+graalpath = 
 
 
-#-----------------------Benchmark Data--------------------------
-benchname = r"Alot Flags Test"   #Name for the whole benchmark run
+#-----------------------基准测试数据--------------------------
+benchname = r"Benchmark Test"
 
 blist = [
-#Note that Forge/Fabric server packs only need "java + arguments" for their launch command, as their jars are automatically found
-#Formatting for the benchmark data:
 
-#  {
-#    "Name": "Client Benchmark Name", 
-#    "PrismInstance": "Name (not full path) of your Prism instance folder",
-#    "Iterations": # of iterations to run and average together
-#  },
 #  {
 #    "Name": "Server benchmark name", 
 #    "Command": Full java command to launch the server, except for forge/fabric arguments,
@@ -66,36 +36,26 @@ blist = [
 #  }
 #]
 
-  {
-    "Name": "Test Client Benchmark", 
-    "PrismInstance": "1.18.2",
-    "Iterations": 3
-  },
-  {
-    "Name": "Test Server Benchmark", 
-    "Command": graalpath + graalflags + memory + lpages,
-    "Path": vevserver, 
-    "Iterations": 5
-  }
-
 
 ]
 
-#----------------------Other Options--------------------------
+#----------------------其他选项--------------------------
 
-#Server benchmarking options
-nogui = True     #Whether to run the dedicated server GUI or not
-carpet = 67 #number of simulated players if the "Carpet" fabric mod is present
-fabric_chunkgen_command = r"chunky start"                 #Chunk generation command to use in fabric packs
-fabric_chunkgen_expect =  r"[Chunky] Task finished for"   #String to look for when chunk generation is finished
-forge_chunkgen_command = r"forge generate 0 0 0 3000"     #Chunk generation command to use in forge packs
+#服务器基准测试选项
+nogui = False     #是否运行专用服务器GUI
+carpet = 67 #如果存在“地毯”织物mod，则模拟玩家的数量
+fabric_chunkgen_command = r"chunky start"      #要在 fabric packs 中使用的块生成命令
+fabric_chunkgen_expect =  r"[Chunky] Task finished for"   #块生成完成时要查找的字符串
+forge_chunkgen_command = r"forge generate 0 0 0 3000"     #用于 Forge packs 的块生成命令
 forge_chunkgen_expect =  r"Finished generating"           ##String to look for when chunk generation is finished
 startuptimeout= 350 #Number of seconds to wait before considering the server to be dead/stuck
 chunkgentimeout = 600 #Number of seconds to wait for chunk generation before considering the server to be dead/stuck 
 totaltimeout = 1200 #Number of seconds the whole server can run before timing out. 
 forceload_cmd= r"forceload add -120 -120 120 120" #Command to forceload a rectangle. Can also be some other server console command. 
 
-#Client benchmarking options
+
+
+#客户端基准测试选项
 prismpath = r"C:/Games/Prism-Windows-Portable-1.4.0/Prism.exe" #Full path to Prism executable file
 prisminstances = r"" #Full path to Prism instance folder. Normally in %appdata%/roaming/Prism on windows, but you can leave this blank if using Prism portable. 
 presentmonpath = r"presentmon.exe"  #full path to Intel presentmon executable file
@@ -106,7 +66,9 @@ focusclick = False #Middle click before searching for buttons, only really neces
 
 
 
-#-------------------------Code----------------------------
+
+
+#-------------------------代码----------------------------
 #You shouldn't have to configure anything below this line!
 
 debug = False
