@@ -41,6 +41,7 @@ jobs:
       - name: 运行基准测试
         run: python3 Benchmark.py
         continue-on-error: true
+      - run: ls -a
       - name: 上传结果
         uses: actions/upload-artifact@v4
         with:
