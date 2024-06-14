@@ -228,13 +228,15 @@ def benchmark(i): #"i is the benchmark index"
             print("Chunks finished. Stopping server...")
             blist[i]["Chunkgen_Times"].append(round(time.time() - start, 2))
             if spark:
+              time.sleep(2)
               print("在服务器上运行 spark health --memory")
               mcserver.sendline("spark health --memory")
               mcserver.expect_exact("TPS from last 5")
+              time.sleep(2)
               print("在服务器上运行 spark gc")
               mcserver.sendline("spark gc")
               mcserver.expect_exact("Garbage Collector statistics")
-              time.sleep(0.5) #make sure log is flushed to disk
+              time.sleep(1)
               print("开始整理数据！")
               with open("logs/latest.log", "r") as f:     #Get spark info from the log
                 lines=f.readlines()
